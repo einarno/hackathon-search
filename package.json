@@ -11,14 +11,19 @@
     "seed": "node ./scripts/setup.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@meilisearch/instant-meilisearch": "^0.13.5",
+    "@mui/material": "^5.14.5",
+    "@tanstack/react-router": "0.0.1-beta.155",
     "meilisearch": "^0.34.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-instantsearch": "^7.0.1",
-    "@tanstack/react-router": "0.0.1-beta.155"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@tanstack/router-devtools": "0.0.1-beta.155",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
