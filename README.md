@@ -37,5 +37,4 @@ npm run seed
 
 ```bash
 npm run dev
-``
 ```
