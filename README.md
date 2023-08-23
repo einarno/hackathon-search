@@ -1,27 +1,36 @@
-# React + TypeScript + Vite
+# React and Mellisearch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a sample project that demonstrates how to use [meilisearch](https://www.meilisearch.com/) with React.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Docker
+- Node.js (18)
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Start search engine
 
-- Configure the top-level `parserOptions` property like this:
+Set up Mellisearch locally with the following commands:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+docker pull getmeili/meilisearch:v1.3
+
+docker run -it --rm \
+    -p 7700:7700 \
+    -e MEILI_ENV='development' \
+    -e MEILI_MASTER_KEY='test_key'\
+    -v $(pwd)/meili_data:/meili_data \
+    getmeili/meilisearch:v1.3
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+[installation guide](https://www.meilisearch.com/docs/learn/getting_started/installation#local-installation).
+
+### Add data to search engine
+
+npm i
+npm run seed
+
+### Start React app
+
+npm run dev

@@ -1,0 +1,177 @@
+[
+    {
+        "id": 1,
+        "role": "CEO",
+        "name": "John Smith",
+        "description": "Founder and CEO of the company. Leading the company towards technological innovation and growth.",
+        "picture": "john_smith.jpg"
+    },
+    {
+        "id": 2,
+        "role": "CTO",
+        "name": "Emily Johnson",
+        "description": "Chief Technology Officer responsible for overseeing the company's technical strategy and development.",
+        "picture": "emily_johnson.jpg"
+    },
+    {
+        "id": 3,
+        "role": "CFO",
+        "name": "Michael Brown",
+        "description": "Chief Financial Officer managing the company's financial operations and investments.",
+        "picture": "michael_brown.jpg"
+    },
+    {
+        "id": 4,
+        "role": "VP of Engineering",
+        "name": "Sarah Davis",
+        "description": "Vice President of Engineering leading the engineering teams in product development.",
+        "picture": "sarah_davis.jpg"
+    },
+    {
+        "id": 5,
+        "role": "Product Manager",
+        "name": "Alex Johnson",
+        "description": "Responsible for defining product strategy and working with development teams to deliver products.",
+        "picture": "alex_johnson.jpg"
+    },
+    {
+        "id": 6,
+        "role": "Software Engineer",
+        "name": "Chris Anderson",
+        "description": "Experienced software engineer specializing in backend development.",
+        "picture": "chris_anderson.jpg"
+    },
+    {
+        "id": 7,
+        "role": "Software Engineer",
+        "name": "Ella Wilson",
+        "description": "Frontend developer with a passion for creating user-friendly interfaces.",
+        "picture": "ella_wilson.jpg"
+    },
+    {
+        "id": 8,
+        "role": "UI/UX Designer",
+        "name": "Olivia Miller",
+        "description": "User Interface and User Experience Designer with a focus on usability and aesthetics.",
+        "picture": "olivia_miller.jpg"
+    },
+    {
+        "id": 9,
+        "role": "Data Scientist",
+        "name": "Daniel Lee",
+        "description": "Data scientist with expertise in machine learning and data analysis.",
+        "picture": "daniel_lee.jpg"
+    },
+    {
+        "id": 10,
+        "role": "HR Manager",
+        "name": "Sophia White",
+        "description": "Human Resources Manager responsible for recruitment and employee relations.",
+        "picture": "sophia_white.jpg"
+    },
+    {
+        "id": 11,
+        "role": "Marketing Manager",
+        "name": "Liam Green",
+        "description": "Marketing Manager leading the company's marketing and branding efforts.",
+        "picture": "liam_green.jpg"
+    },
+    {
+        "id": 12,
+        "role": "Sales Manager",
+        "name": "Ava Robinson",
+        "description": "Sales Manager responsible for driving sales and revenue growth.",
+        "picture": "ava_robinson.jpg"
+    },
+    {
+        "id": 13,
+        "role": "Customer Support Specialist",
+        "name": "Noah Hall",
+        "description": "Dedicated customer support specialist ensuring customer satisfaction.",
+        "picture": "noah_hall.jpg"
+    },
+    {
+        "id": 14,
+        "role": "IT Administrator",
+        "name": "Mia Turner",
+        "description": "IT Administrator managing the company's network and systems.",
+        "picture": "mia_turner.jpg"
+    },
+    {
+        "id": 15,
+        "role": "Quality Assurance Engineer",
+        "name": "William Martinez",
+        "description": "Quality Assurance Engineer responsible for software testing and quality control.",
+        "picture": "william_martinez.jpg"
+    },
+    {
+        "id": 16,
+        "role": "Business Analyst",
+        "name": "Grace Baker",
+        "description": "Analyzing business processes and data to provide insights for decision-making.",
+        "picture": "grace_baker.jpg"
+    },
+    {
+        "id": 17,
+        "role": "Project Manager",
+        "name": "James Adams",
+        "description": "Project Manager overseeing the planning and execution of company projects.",
+        "picture": "james_adams.jpg"
+    },
+    {
+        "id": 18,
+        "role": "Network Engineer",
+        "name": "Chloe Hernandez",
+        "description": "Network Engineer responsible for maintaining the company's network infrastructure.",
+        "picture": "chloe_hernandez.jpg"
+    },
+    {
+        "id": 19,
+        "role": "Legal Counsel",
+        "name": "Henry Foster",
+        "description": "Legal Counsel providing legal guidance and support to the company.",
+        "picture": "henry_foster.jpg"
+    },
+    {
+        "id": 20,
+        "role": "Graphic Designer",
+        "name": "Evelyn Ward",
+        "description": "Graphic Designer creating visual content for marketing and branding.",
+        "picture": "evelyn_ward.jpg"
+    },
+    {
+        "id": 21,
+        "role": "Software Engineer",
+        "name": "Liam Taylor",
+        "description": "Full-stack developer with expertise in web and mobile app development.",
+        "picture": "liam_taylor.jpg"
+    },
+    {
+        "id": 22,
+        "role": "Software Engineer",
+        "name": "Sophie Evans",
+        "description": "Backend developer specializing in database design and optimization.",
+        "picture": "sophie_evans.jpg"
+    },
+    {
+        "id": 23,
+        "role": "Software Engineer",
+        "name": "Jackson Clark",
+        "description": "Frontend developer with a passion for creating responsive and interactive user interfaces.",
+        "picture": "jackson_clark.jpg"
+    },
+    {
+        "id": 24,
+        "role": "Software Engineer",
+        "name": "Avery Allen",
+        "description": "Mobile app developer with experience in iOS and Android development.",
+        "picture": "avery_allen.jpg"
+    },
+    {
+        "id": 25,
+        "role": "Software Engineer",
+        "name": "Harper Mitchell",
+        "description": "DevOps engineer responsible for automating and optimizing development and deployment processes.",
+        "picture": "harper_mitchell.jpg"
+    }
+]
