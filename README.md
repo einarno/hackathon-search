@@ -1,6 +1,6 @@
 # React and Mellisearch
 
-This is a sample project that demonstrates how to use [meilisearch](https://www.meilisearch.com/) with React.
+This is a sample project that demonstrates how to use [meilisearch](https://www.meilisearch.com/) with React
 
 ## Requirements
 
@@ -24,13 +24,18 @@ docker run -it --rm \
     getmeili/meilisearch:v1.3
 ```
 
-[installation guide](https://www.meilisearch.com/docs/learn/getting_started/installation#local-installation).
+[installation guide](https://www.meilisearch.com/docs/learn/getting_started/installation#local-installation)
 
 ### Add data to search engine
 
+```bash
 npm i
 npm run seed
+```
 
 ### Start React app
 
+```bash
 npm run dev
+``
+```
