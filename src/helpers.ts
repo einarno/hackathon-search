@@ -1,29 +1,44 @@
 import { z } from "zod"
-import employeesJSON from "../scripts/employees.json" assert { type: "json" }
+import recipesJSON from "../scripts/recipes.json" assert { type: "json" }
 
-const employeeSchema = z.object({
+const recipesSchema = z.object({
     id: z.number(),
-    role: z.string(),
-    name: z.string(),
-    description: z.string(),
-    picture: z.string()
-})
-
-export type Employee = z.infer<typeof employeeSchema>
-
-
-
-export const getEmployee = (id: string) => {
-    const employees = employeeSchema.array().parse(employeesJSON)
-    return employees.find(employee => employee.id === Number(id))
+    Name: z.string(),
+    Description: z.string(),
+    Author: z.string(),
+    Ingredients: z.string().array(),
+    Method: z.string().array(),
+}).transform(data => ({
+    id: data.id,
+    name: data.Name,
+    description: data.Description,
+    author: data.Author,
+    ingredients: data.Ingredients,
+    method: data.Method,
+}
+))
+export type Recipes = {
+    id: number
+    name: string
+    description: string
+    author: string
+    ingredients: string[]
+    method: string[]
 }
 
-export const getEmployees = (ids: string[]) => {
-    const employees = employeeSchema.array().parse(employeesJSON)
-    const employeeMap = employees.reduce<Record<string, Employee>>((acc, employee) => {
+
+
+export const getRecipe = (id: string) => {
+    const recipes = recipesSchema.array().parse(recipesJSON)
+    return recipes.find(recipe => recipe.id === Number(id))
+}
+
+export const getRecipes = (ids: string[]) => {
+    const recipes = recipesSchema.array().parse(recipesJSON)
+    const recipeMap = recipes.reduce<Record<string, Recipes>>((acc, employee) => {
         acc[employee.id] = employee
         return acc
     }, {})
 
-    return ids.map(id => employeeMap[id])
+    return ids.map(id => recipeMap[id])
 }
