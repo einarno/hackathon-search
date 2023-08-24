@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, CardContent, Grid, Stack, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Stack, Typography, useTheme } from "@mui/material";
 import { Recipe } from "../helpers";
 import { createApi } from 'unsplash-js';
 import { Link } from "@tanstack/react-router";
@@ -25,7 +25,13 @@ const foodArray = [
 
 ]
 
-export const RecipeCard: React.FC<Props> = ({ recipe }) => {
+export const addOpacity = (color: string, opacity: number) => {
+    // coerce values so ti is between 0 and 1.
+    const _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
+    return color + _opacity.toString(16).toUpperCase();
+};
+
+export const useGetImageUrl = (recipe: Recipe) => {
     const [image, setImage] = React.useState<string | undefined>();
     useEffect(() => {
         if (!image) {
@@ -41,14 +47,29 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
             });
         }
     }, []);
-
-
+    return image;
+}
+export const RecipeCard: React.FC<Props> = ({ recipe }) => {
+    const image = useGetImageUrl(recipe);
+    const theme = useTheme()
+    const menuLinkStyle = { color: theme.palette.text.primary, textDecoration: "none" };
+    const activeMenuLinkStyle = {
+        color: theme.palette.text.primary,
+        backgroundColor: addOpacity(theme.palette.primary.light, 0.26),
+        borderRadius: "8px",
+    };
     return (
         <Card variant="elevation">
             <CardContent>
                 <Stack>
-                    <Link to="/recipes/$recipeId" params={{ recipeId: recipe.id.toString() }} search={{ searchOpen: false, expandIngredients: true, expandMethod: false }}>
-                        <Typography variant="h5">
+                    <Link
+                        style={menuLinkStyle}
+                        activeProps={{ style: activeMenuLinkStyle }}
+                        to="/recipes/$recipeId"
+                        params={{ recipeId: recipe.id.toString() }}
+                        search={{ searchOpen: false, expandIngredients: true, expandMethod: false }} style={{ color: theme.typography.body1.color }}
+                    >
+                        <Typography variant="h5" color={theme.palette.text.primary}>
                             {recipe.name}
                         </Typography>
                     </Link>

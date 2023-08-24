@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import { ReviewForm } from "./ReviewForm";
+import { useGetImageUrl } from "./RecipeCard";
 
 type StepProps = {
   steps: string[];
@@ -106,14 +107,22 @@ export const ViewRecipe = () => {
     navigate({
       search: (prev) => ({ ...prev, expandIngredients: !expandIngredients }),
     });
-
   const { recipe } = useLoader({ from: recipeRoute.id });
+
+  const imageUrl = useGetImageUrl(recipe)
   return (
     <Stack maxWidth="md" gap={4} p={2} minHeight="calc(100vh - 200px)">
       <Stack gap={0}>
         <Typography color="orangered" variant="h4">
           {recipe.name}
         </Typography>
+        <img
+          object-fit="cover"
+          width="500px"
+          height="400px"
+          src={imageUrl}
+          alt="new"
+        />
         <Typography variant="subtitle1" color="gray">
           By {recipe.author}
         </Typography>
