@@ -1,9 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import { Button, Grid, Stack, Typography, useTheme } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const theme = useTheme()
   return (
     <Stack
       gap={2}
@@ -55,12 +57,13 @@ export const Navbar = () => {
       </Stack>
       <Grid container justifyContent="flex-end">
         <Button
+          sx={{ bgcolor: theme.palette.grey[200], color: theme.palette.text.primary, borderColor: theme.palette.grey[400], borderRadius: 10 }}
+          startIcon={<SearchIcon color="primary" />}
           variant="outlined"
           size="small"
           onClick={() => {
             navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
-          }}
-        >
+          }} >
           Search
         </Button>
       </Grid>

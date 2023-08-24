@@ -1,21 +1,21 @@
 import {
     Outlet,
-    Route,
     ErrorComponent,
-    Router,
+    useNavigate,
     RootRoute,
     useSearch,
-    useNavigate,
+    Route,
+    Router,
 } from "@tanstack/react-router"
 import { Container, Dialog, DialogContent, DialogTitle, Paper, Stack, Typography } from "@mui/material"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
-import { getRecipe } from "./helpers"
-import { Search } from "./Components/Search"
-import { z } from "zod"
 import { Home } from "./Containers/Home"
-import { ViewRecipe } from "./Components/ViewRecipe"
 import { useEffect } from "react"
 import { Navbar } from "./Components/Navbar"
+import { Search } from "./Components/Search";
+import { z } from "zod";
+import { ViewRecipe } from "./Components/ViewRecipe";
+import { getRecipe } from "./helpers";
 
 
 
@@ -38,7 +38,7 @@ const RootComponent = () => {
         <Stack gap={1}>
             <Navbar />
             <Container maxWidth="md" component={Paper} elevation={2} >
-              <Outlet />
+                <Outlet />
             </Container>
 
             {/* Start rendering router matches */}
