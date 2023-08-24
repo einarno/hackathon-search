@@ -9,14 +9,15 @@ import {
 } from "@mui/material";
 import { getRecipeReviews } from "../localStorage";
 import { getRecipe } from "../helpers";
+import { useNavigate } from "@tanstack/react-router";
+import { recipeRoute } from "../router";
 
 export const ReviewList = () => {
   const recipeReviews = getRecipeReviews();
+  const navigate = useNavigate();
   return (
     <TableContainer component={Paper}>
-      <Table
-        sx={{ minWidth: 650 }}
-        aria-label="simple table">
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Recipe</TableCell>
@@ -31,10 +32,16 @@ export const ReviewList = () => {
             return (
               <TableRow
                 key={review.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                sx={{ "&:last-child td, &:last-child th": { border: 0 }, "cursor": "pointer" }}
+              >
                 <TableCell
+                  onClick={() => {
+                    navigate({ to: recipeRoute.id, params: { recipeId } });
+                  }}
+                  sx={{ "&:hover": { textDecoration: "underline", color: "orangered" } }}
                   component="th"
-                  scope="row">
+                  scope="row"
+                >
                   {recipe.status === "success" ? recipe.recipe.name : "Unknown"}
                 </TableCell>
                 <TableCell align="right">{review.userName}</TableCell>
