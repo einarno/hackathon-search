@@ -1,7 +1,7 @@
-import { Recipe, Review } from "./types"
+import { Review } from "./types"
 
-export const setRecipeReview = (recipe: Recipe, review: Review) => {
-  localStorage.setItem(recipe.id.toString(), JSON.stringify(review))
+export const setRecipeReview = (recipeId: number, review: Review) => {
+  localStorage.setItem(recipeId.toString(), JSON.stringify(review))
 }
 
 export const getRecipeReviews = () => {
