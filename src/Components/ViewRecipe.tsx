@@ -12,6 +12,8 @@ import {
   Typography,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
+import { Hit } from "./Hit";
+import { HitsForm, ReviewForm } from "./ReviewForm";
 
 type StepProps = {
   steps: string[];
@@ -139,6 +141,8 @@ export const ViewRecipe = () => {
         initiallyOpen={expandMethod}
         toggle={toggleMethod}
       />
+      <Divider />
+      <ReviewForm recipe={recipe} />
     </Stack>
   );
 };
