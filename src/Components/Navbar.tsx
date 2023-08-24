@@ -64,7 +64,7 @@ export const Navbar = () => {
           onClick={() => {
             navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
           }} >
-          Search
+          Search ⌘K
         </Button>
       </Grid>
     </Stack>
