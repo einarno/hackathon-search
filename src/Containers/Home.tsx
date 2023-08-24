@@ -5,23 +5,13 @@ import { setRecipeReview } from "../localStorage"
 export const Home = () => {
   const generateReview = () => {
     const recipeId = Math.floor(Math.random() * 100)
-    setRecipeReview(
-      {
-        id: recipeId,
-        name: "The best recipe",
-        description: "",
-        author: "",
-        ingredients: [],
-        method: [],
-      },
-      {
-        recipeId: recipeId,
-        id: Math.floor(Math.random() * 100),
-        userName: "Mathias",
-        rating: Math.floor(Math.random() * 5 + 1),
-        comment: "This is a great recipe",
-      }
-    )
+    setRecipeReview(recipeId, {
+      recipeId: recipeId,
+      id: Math.floor(Math.random() * 100),
+      userName: "Mathias",
+      rating: Math.floor(Math.random() * 5 + 1),
+      comment: "This is a great recipe",
+    })
   }
   return (
     <Stack spacing={2}>
