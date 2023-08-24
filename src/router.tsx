@@ -102,7 +102,7 @@ const indexRoute = new Route({
 
 
 const RecipesComponent = () => {
-    const { searchOpen } = useSearch({ from: recipeRoute.id })
+    const { searchOpen } = useSearch({ from: selectedRecipeRoute.id })
     const navigate = useNavigate()
     return (<>
         <Home />
@@ -116,10 +116,11 @@ const RecipesComponent = () => {
         >
             <Search />
         </Dialog>
+        <Outlet />
     </>)
 }
 
-const recipesRoute = new Route({
+const selectedRecipeRoute = new Route({
     getParentRoute: () => rootRoute,
     path: "recipes",
     validateSearch: z.object({
@@ -129,7 +130,7 @@ const recipesRoute = new Route({
 })
 
 const recipeIndexRouter = new Route({
-    getParentRoute: () => recipesRoute,
+    getParentRoute: () => selectedRecipeRoute,
     path: "/",
     component: () => (
         <Stack>
@@ -155,7 +156,7 @@ const RecipeComponent = () => {
     )
 }
 const recipeRoute = new Route({
-    getParentRoute: () => recipesRoute,
+    getParentRoute: () => selectedRecipeRoute,
     path: "$recipeId",
     key: false,
     loader: async ({ params: { recipeId } }) => {
@@ -176,7 +177,7 @@ const recipeRoute = new Route({
 })
 
 const routeTree = rootRoute.addChildren([
-    recipesRoute.addChildren([recipeRoute, recipeIndexRouter]),
+    selectedRecipeRoute.addChildren([recipeRoute, recipeIndexRouter]),
     indexRoute,
 ])
 
