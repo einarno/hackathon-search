@@ -67,7 +67,7 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
                         activeProps={{ style: activeMenuLinkStyle }}
                         to="/recipes/$recipeId"
                         params={{ recipeId: recipe.id.toString() }}
-                        search={{ searchOpen: false, expandIngredients: true, expandMethod: false }} style={{ color: theme.typography.body1.color }}
+                        search={{ searchOpen: false, expandIngredients: true, expandMethod: false }}
                     >
                         <Typography variant="h5" color={theme.palette.text.primary}>
                             {recipe.name}
