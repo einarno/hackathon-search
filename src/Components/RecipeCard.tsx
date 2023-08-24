@@ -3,8 +3,6 @@ import { Card, CardContent, Grid, Stack, Typography } from "@mui/material";
 import { Recipe } from "../helpers";
 import { createApi } from 'unsplash-js';
 import { Link } from "@tanstack/react-router";
-import { set } from "zod";
-
 
 const unsplash = createApi({
     accessKey: '',
