@@ -11,11 +11,9 @@ import { getAllRecipeReviews } from "../localStorage";
 import { getRecipe } from "../helpers";
 import { useNavigate } from "@tanstack/react-router";
 import { recipeRoute } from "../router";
-import { Review } from "../types";
 
 export const ReviewList = () => {
   const allReviews = getAllRecipeReviews();
-    console.log({ allReviews });
   const navigate = useNavigate();
   return (
     <TableContainer component={Paper}>
@@ -30,10 +28,10 @@ export const ReviewList = () => {
         </TableHead>
         <TableBody>
           {allReviews.slice(0, 10).map((r) => {
-            const res = getRecipe(r.recipeId);
-                        if (res.status === "error") {
-                return null;
-                }
+            const res = getRecipe(String(r.recipeId));
+            if (res.status === "error") {
+              return null;
+            }
             const recipe = res.recipe;
             return (
               <TableRow
@@ -58,11 +56,11 @@ export const ReviewList = () => {
                 >
                   {recipe.name}
                 </TableCell>
-                  <>
-                    <TableCell align="right">{r.userName}</TableCell>
-                    <TableCell align="right">{r.rating}</TableCell>
-                    <TableCell align="right">{r.comment}</TableCell>
-                  </>
+                <>
+                  <TableCell align="right">{r.userName}</TableCell>
+                  <TableCell align="right">{r.rating}</TableCell>
+                  <TableCell align="right">{r.comment}</TableCell>
+                </>
               </TableRow>
             );
           })}
