@@ -93,7 +93,10 @@ const RecipesComponent = () => {
             fullWidth={true}
             open={searchOpen}
         >
-            <Search />
+            <DialogTitle>Search for recipes</DialogTitle>
+            <DialogContent>
+                <Search />
+            </DialogContent>
         </Dialog>
         <Outlet />
     </>)
