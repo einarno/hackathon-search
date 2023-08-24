@@ -13,8 +13,8 @@ const credentials = {
 // Configuration
 const INDEX_NAME = "recipes"
 
-const searchableAttributes = ["Name", "Ingredients"]
-const displayedAttributes = ["Name", "url", "Description"]
+const searchableAttributes = ["Name", "Ingredients",  "url", "Author", "Description",  "Method", ]
+const displayedAttributes = ["id", "Name",  "Ingredients", "url", "Author","Description", "Method",  ]
 
 const setup = async () => {
 	console.log("🚀 Seeding your Meilisearch instance with recipes", recipes.length)
