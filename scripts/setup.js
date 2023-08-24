@@ -3,7 +3,7 @@
 import { MeiliSearch } from "meilisearch"
 
 // Load the datasets
-import employees from "./employees.json" assert { type: "json" }
+import recipes from "./recipes.json" assert { type: "json" }
 // Load credentials from environment
 const credentials = {
   host: "localhost:7700",
@@ -11,13 +11,13 @@ const credentials = {
 }
 
 // Configuration
-const INDEX_NAME = "employees"
+const INDEX_NAME = "recipes"
 
-const searchableAttributes = ["role", "name", "description", ]
-const displayedAttributes = ["id", "role", "name", "description", "picture",]
+const searchableAttributes = ["Name", "Ingredients"]
+const displayedAttributes = ["Name", "url", "Description"]
 
 const setup = async () => {
-	console.log("🚀 Seeding your Meilisearch instance")
+	console.log("🚀 Seeding your Meilisearch instance with recipes", recipes.length)
 	
 	const client = new MeiliSearch(credentials)
 	
@@ -30,7 +30,7 @@ const setup = async () => {
 
 	
 	// Adding documents
-	await client.index(INDEX_NAME).addDocuments(employees)
+	await client.index(INDEX_NAME).addDocuments(recipes)
 	
 }
 

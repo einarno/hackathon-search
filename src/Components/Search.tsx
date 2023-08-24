@@ -11,7 +11,7 @@ export const Search = () => (
         <InstantSearch searchClient={meilisearchClient}>
             <SearchBox />
             <h2>Results</h2>
-            <Index indexName="employees">
+            <Index indexName="recipes">
                 <Hits />
             </Index>
         </InstantSearch>
