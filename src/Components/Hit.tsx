@@ -1,5 +1,5 @@
 import { Recipe } from "../helpers";
-import { Rating } from "@mui/material";
+import { Rating, Stack, TextField } from "@mui/material";
 import { getRecipeReview } from "../localStorage";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -13,9 +13,14 @@ export function Hit(props: HitProps) {
   return (
     <>
       <div onClick={() => navigate({ to: `/recipes/${recipe.id}` })}>
-        <h3>{recipe.name}</h3>
-        <p>{recipe.description}</p>
-        <Rating name="read-only" value={review?.rating} readOnly />
+        <Stack direction="row" spacing={2}>
+          <Stack direction="column" spacing={2}>
+            <h3>{recipe.name}</h3>
+            <p>{recipe.description}</p>
+          </Stack>
+          <Rating name="read-only" value={review?.rating} readOnly />
+          {review?.comment && <TextField value={review?.comment} />}
+        </Stack>
       </div>
     </>
   );
