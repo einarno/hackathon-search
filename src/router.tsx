@@ -15,6 +15,7 @@ import { getRecipe } from "./helpers"
 import { Search } from "./Components/Search"
 import { z } from "zod"
 import { Home } from "./Containers/Home"
+import { ViewRecipe } from "./Components/ViewRecipe"
 
 
 
@@ -117,7 +118,7 @@ const RecipesComponent = () => {
     </>)
 }
 
-const selectedRecipeRoute = new Route({
+export const selectedRecipeRoute = new Route({
     getParentRoute: () => rootRoute,
     path: "recipes",
     validateSearch: z.object({
@@ -151,7 +152,7 @@ const RecipeComponent = () => {
         </Stack>
     )
 }
-const recipeRoute = new Route({
+export const recipeRoute = new Route({
     getParentRoute: () => selectedRecipeRoute,
     path: "$recipeId",
     key: false,
@@ -162,6 +163,10 @@ const recipeRoute = new Route({
         }
         throw new NotFoundError("Recipe not found")
     },
+    validateSearch: z.object({
+        expandIngredients: z.boolean().default(false),
+        expandMethod: z.boolean().default(false),
+    }),
     errorComponent: ({ error }) => {
         if (error instanceof NotFoundError) {
             return <div>{error.message}</div>
@@ -169,7 +174,7 @@ const recipeRoute = new Route({
 
         return <ErrorComponent error={error} />
     },
-    component: RecipeComponent,
+    component: ViewRecipe,
 })
 
 const routeTree = rootRoute.addChildren([

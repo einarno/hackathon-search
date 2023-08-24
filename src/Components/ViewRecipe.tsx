@@ -1,4 +1,4 @@
-import { useLoader } from "@tanstack/react-router";
+import { useLoader, useNavigate, useSearch } from "@tanstack/react-router";
 import { recipeRoute } from "../router";
 import {
   Checkbox,
@@ -12,24 +12,22 @@ import {
   Typography,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
-import { useState } from "react";
 
 type StepProps = {
   steps: string[];
   initiallyOpen?: boolean;
   title: string;
   dense?: boolean;
+  toggle: () => void;
 };
-const Steps = ({ steps, initiallyOpen, title, dense }: StepProps) => {
-  const [open, setOpen] = useState(initiallyOpen ?? false);
-
+const Steps = ({ steps, initiallyOpen, title, toggle, dense }: StepProps) => {
   return (
     <Stack gap={1}>
       <Stack
         direction="row"
         alignItems="justify"
         justifyContent="space-between"
-        onClick={() => setOpen(!open)}
+        onClick={toggle}
         p={1}
         sx={{
           cursor: "pointer",
@@ -48,12 +46,12 @@ const Steps = ({ steps, initiallyOpen, title, dense }: StepProps) => {
         </Typography>
         <ExpandMore
           sx={{
-            transform: open ? "rotate(0deg)" : "rotate(180deg)",
+            transform: initiallyOpen ? "rotate(0deg)" : "rotate(180deg)",
             transition: "transform 0.2s",
           }}
         />
       </Stack>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={initiallyOpen} timeout="auto" unmountOnExit>
         <List
           component="div"
           sx={{
@@ -94,7 +92,18 @@ const Steps = ({ steps, initiallyOpen, title, dense }: StepProps) => {
 };
 
 export const ViewRecipe = () => {
-    console.log("view recipe")
+  const { expandMethod, expandIngredients } = useSearch({
+    from: recipeRoute.id,
+  });
+  const navigate = useNavigate();
+
+  const toggleMethod = () =>
+    navigate({ search: (prev) => ({ ...prev, expandMethod: !expandMethod }) });
+  const toggleIngredients = () =>
+    navigate({
+      search: (prev) => ({ ...prev, expandIngredients: !expandIngredients }),
+    });
+
   const { recipe } = useLoader({ from: recipeRoute.id });
   return (
     <Stack
@@ -116,12 +125,18 @@ export const ViewRecipe = () => {
       <Typography variant="body1"> {recipe.description}</Typography>
       <Divider />
       <Steps
+        toggle={toggleIngredients}
         steps={recipe.ingredients}
         title="Ingredients"
-        initiallyOpen
+        initiallyOpen={expandIngredients}
         dense
       />
-      <Steps steps={recipe.method} title="Steps" />
+      <Steps
+        steps={recipe.method}
+        title="Steps"
+        initiallyOpen={expandMethod}
+        toggle={toggleMethod}
+      />
     </Stack>
   );
 };
