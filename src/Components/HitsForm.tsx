@@ -1,15 +1,9 @@
-import { Button, Rating, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Button, Rating, Stack, TextField } from "@mui/material";
+import { useState } from "react";
 
 export const HitsForm = () => {
   const [rating, setRating] = useState(0);
   const [description, setDescription] = useState("");
-  useEffect(() => {
-    if (rating === 0) {
-      return;
-    }
-    console.log(rating);
-  }, [rating]);
 
   const onChangeRating = (_: unknown, value: number | null) => {
     if (value) setRating(value);
@@ -26,17 +20,19 @@ export const HitsForm = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <Rating
-          name="simple-controlled"
-          value={rating}
-          onChange={onChangeRating}
-        />
-        <TextField
-          helperText="Description"
-          value={description}
-          onChange={onChangeDescription}
-        />
-        <Button type="submit">Submit</Button>
+        <Stack direction="row" spacing={2}>
+          <Rating
+            name="simple-controlled"
+            value={rating}
+            onChange={onChangeRating}
+          />
+          <TextField
+            helperText="Description"
+            value={description}
+            onChange={onChangeDescription}
+          />
+          <Button type="submit">Add rating</Button>
+        </Stack>
       </form>
     </>
   );
