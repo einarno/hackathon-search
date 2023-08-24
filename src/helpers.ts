@@ -2,10 +2,10 @@ import { z } from "zod"
 import recipesJSON from "../scripts/recipes.json" assert { type: "json" }
 const recipesJSONWithId = recipesJSON.map((recipe, id) => ({ ...recipe, id }))
 
-const recipesSchema = z.object({
+export const recipesSchema = z.object({
     id: z.number(),
     Name: z.string(),
-    Description: z.string(),
+    Description: z.string().nullable(),
     Author: z.string(),
     Ingredients: z.string().array(),
     Method: z.string().array(),

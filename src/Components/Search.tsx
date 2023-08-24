@@ -1,5 +1,6 @@
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch"
-import { InstantSearch, SearchBox, Hits, Index } from "react-instantsearch";
+import { InstantSearch, SearchBox, Index } from "react-instantsearch";
+import { Hits } from "./Hits";
 
 const MEILI_HOST = "http://0.0.0.0:7700"
 
