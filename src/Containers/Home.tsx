@@ -3,6 +3,7 @@ import { ReviewList } from "../Components/ReviewList"
 import { setRecipeReview } from "../localStorage"
 
 const reviewWords = ["terrible", "bad", "good", "great", "perfect!"]
+const reviewers = ["Mathias", "Audun", "Mikael", "Einar", "Bob", "Alice"]
 
 export const Home = () => {
   const generateReview = () => {
@@ -11,7 +12,7 @@ export const Home = () => {
     setRecipeReview(recipeId, {
       recipeId: recipeId,
       id: Math.floor(Math.random() * 100),
-      userName: "Mathias",
+      userName: reviewers[Math.floor(Math.random() * reviewers.length)],
       rating: rating,
       comment: "This is a " + reviewWords[rating - 1] + " recipe",
     })
