@@ -28,6 +28,7 @@ const RootComponent = () => {
                     <Typography noWrap>
                         <Link
                             to="/"
+                            search={{ searchOpen: false }}
                             activeProps={{
                                 className: "font-bold",
                             }}
@@ -68,9 +69,6 @@ const RootComponent = () => {
 }
 
 const rootRoute = new RootRoute({
-    validateSearch: z.object({
-        searchOpen: z.boolean().default(false),
-    }),
     component: RootComponent
 },)
 
