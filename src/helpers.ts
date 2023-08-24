@@ -20,15 +20,7 @@ export const recipesSchema = z.object({
     url: data.url,
 }
 ))
-export type Recipe = {
-    id: number
-    name: string
-    url: string
-    description: string
-    author: string
-    ingredients: string[]
-    method: string[]
-}
+export type Recipe = z.infer<typeof recipesSchema>
 
 type ReturnRecipes = {
     status: "success"
