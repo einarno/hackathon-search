@@ -15,6 +15,7 @@ import { Review } from "../types";
 
 export const ReviewList = () => {
   const allReviews = getAllRecipeReviews();
+    console.log({ allReviews });
   const navigate = useNavigate();
   return (
     <TableContainer component={Paper}>
@@ -28,11 +29,15 @@ export const ReviewList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allReviews.slice(0, 10).map(({ recipeId, reviews }) => {
-            const recipe = getRecipe(recipeId);
+          {allReviews.slice(0, 10).map((r) => {
+            const res = getRecipe(r.recipeId);
+                        if (res.status === "error") {
+                return null;
+                }
+            const recipe = res.recipe;
             return (
               <TableRow
-                key={recipeId}
+                key={recipe.id}
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
                   cursor: "pointer",
@@ -40,7 +45,7 @@ export const ReviewList = () => {
               >
                 <TableCell
                   onClick={() => {
-                    navigate({ to: recipeRoute.id, params: { recipeId } });
+                    navigate({ to: recipeRoute.id, params: { recipeId: recipe.id } });
                   }}
                   sx={{
                     "&:hover": {
@@ -51,15 +56,13 @@ export const ReviewList = () => {
                   component="th"
                   scope="row"
                 >
-                  {recipe.status === "success" ? recipe.recipe.name : "Unknown"}
+                  {recipe.name}
                 </TableCell>
-                {reviews.map((review: Review) => (
                   <>
-                    <TableCell align="right">{review.userName}</TableCell>
-                    <TableCell align="right">{review.rating}</TableCell>
-                    <TableCell align="right">{review.comment}</TableCell>
+                    <TableCell align="right">{r.userName}</TableCell>
+                    <TableCell align="right">{r.rating}</TableCell>
+                    <TableCell align="right">{r.comment}</TableCell>
                   </>
-                ))}
               </TableRow>
             );
           })}

@@ -125,7 +125,7 @@ export const recipeRoute = new Route({
     path: "$recipeId",
     key: false,
     loader: async ({ params: { recipeId } }) => {
-        const res = getRecipe(recipeId)
+        const res = getRecipe(Number(recipeId))
         if (res.status === "success") {
             return { recipe: res.recipe }
         }

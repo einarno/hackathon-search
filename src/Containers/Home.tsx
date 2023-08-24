@@ -26,7 +26,7 @@ export const Home = () => {
     } as Review);
   };
   return (
-    <Stack spacing={2}>
+    <Stack p={2} gap={2} pb={8}>
       <Typography variant="h2">Welcome to recipe search </Typography>
       <Typography variant="subtitle1">
         Click on the recipe search link to get started

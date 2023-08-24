@@ -13,12 +13,19 @@ export const addRecipeReview = (recipeId: number, review: Review) => {
   localStorage.setItem(recipeId.toString(), JSON.stringify([review]));
 };
 
-export const getAllRecipeReviews = () => {
-  return Object.entries(localStorage).map(([key, value]) => ({
-    recipeId: key,
-    reviews: JSON.parse(value),
-  }));
-};
+export function getAllRecipeReviews(): Review[] {
+  const reviews: Review[] = [
+    {
+      id: 1,
+      recipeId: 1,
+      userName: "bob",
+      rating: 5,
+      comment: "This is a great recipe!",
+      added: new Date(),
+    },
+  ];
+  return reviews;
+}
 
 export const getRecipeReviews = (recipeId: number): Review[] => {
   const reviews = localStorage.getItem(recipeId.toString());
