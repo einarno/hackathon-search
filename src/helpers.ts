@@ -17,7 +17,7 @@ const recipesSchema = z.object({
     method: data.Method,
 }
 ))
-export type Recipes = {
+export type Recipe = {
     id: number
     name: string
     description: string
@@ -35,7 +35,7 @@ export const getRecipe = (id: string) => {
 
 export const getRecipes = (ids: string[]) => {
     const recipes = recipesSchema.array().parse(recipesJSON)
-    const recipeMap = recipes.reduce<Record<string, Recipes>>((acc, employee) => {
+    const recipeMap = recipes.reduce<Record<string, Recipe>>((acc, employee) => {
         acc[employee.id] = employee
         return acc
     }, {})
