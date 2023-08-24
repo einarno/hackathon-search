@@ -18,6 +18,56 @@ import { ViewRecipe } from "./Components/ViewRecipe"
 import { useEffect } from "react"
 
 
+const Navbar = () => {
+  const navigate = useNavigate();
+  return (
+    <Stack
+      direction="row"
+      gap={1}
+      borderBottom="1px solid #eee"
+      p={1}
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <Stack>
+        <Typography noWrap>
+          <Link
+            to="/"
+            search={{ searchOpen: false }}
+            activeProps={{
+              className: "font-bold",
+            }}
+            activeOptions={{ exact: true }}
+          >
+            Home
+          </Link>
+        </Typography>
+      </Stack>
+      <Stack>
+        <Link
+          to={"/recipes"}
+          search={{ searchOpen: false }}
+          activeProps={{
+            className: "font-bold",
+          }}
+        >
+          <Typography noWrap>Recipe list</Typography>
+        </Link>
+      </Stack>
+      <Grid container justifyContent="flex-end">
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => {
+            navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
+          }}
+        >
+          Search
+        </Button>
+      </Grid>
+    </Stack>
+  );
+};
 
 const RootComponent = () => {
     const navigate = useNavigate()
@@ -36,43 +86,7 @@ const RootComponent = () => {
     });
     return (
         <>
-            <Stack direction="row" gap={1}>
-                <Stack>
-                    <Typography noWrap>
-                        <Link
-                            to="/"
-                            search={{ searchOpen: false }}
-                            activeProps={{
-                                className: "font-bold",
-                            }}
-                            activeOptions={{ exact: true }}
-                        >
-                            Home
-                        </Link>
-                    </Typography>
-                </Stack>
-                <Stack>
-                    <Link
-                        to={"/recipes"}
-                        search={{ searchOpen: false }}
-                        activeProps={{
-                            className: "font-bold",
-                        }}
-                    >
-                        <Typography noWrap>
-                            Recipe list
-                        </Typography>
-                    </Link>
-                </Stack>
-                <Grid container justifyContent="flex-end" >
-                    <Button variant="outlined" size="small" onClick={() => {
-                        navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
-                    }} >
-                        Search
-                    </Button>
-                </Grid>
-            </Stack >
-            <hr />
+            <Navbar />
             <Outlet />
 
             {/* Start rendering router matches */}
