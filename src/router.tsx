@@ -105,7 +105,6 @@ const RecipesComponent = () => {
     const { searchOpen } = useSearch({ from: selectedRecipeRoute.id })
     const navigate = useNavigate()
     return (<>
-        <Home />
         <Dialog
             onClose={() => {
                 navigate({ search: (prev) => ({ ...prev, searchOpen: false }) });
@@ -134,8 +133,7 @@ const recipeIndexRouter = new Route({
     path: "/",
     component: () => (
         <Stack>
-            <Typography>Search for an recipe</Typography>
-            <Typography>The selected result will show up here</Typography>
+            <Typography>Add list of recipes here</Typography>
         </Stack>
     ),
 })
