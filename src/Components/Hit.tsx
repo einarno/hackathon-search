@@ -1,7 +1,7 @@
 import { Recipe } from "../helpers";
 import { Rating, Stack } from "@mui/material";
 import CommentIcon from "@mui/icons-material/CommentRounded";
-import { getRecipeReview } from "../localStorage";
+import { getRecipeReviews } from "../localStorage";
 import { useNavigate } from "@tanstack/react-router";
 
 type HitProps = {
@@ -12,7 +12,8 @@ type HitProps = {
 
 export function Hit({ recipe, selected }: HitProps) {
   const navigate = useNavigate();
-  const review = getRecipeReview(recipe.id);
+  const reviews = getRecipeReviews(recipe.id);
+  const rating = reviews[0]?.rating || 0;
   return (
     <Stack
       onClick={() => navigate({ to: `/recipes/${recipe.id}` })}
@@ -43,7 +44,7 @@ export function Hit({ recipe, selected }: HitProps) {
           }
           style={{ colorScheme: "light", alignItems: "center" }}
         >
-          <Rating name="read-only" value={review?.rating} readOnly />
+          <Rating name="read-only" value={rating} readOnly />
           {<CommentIcon />}
         </Stack>
       </Stack>

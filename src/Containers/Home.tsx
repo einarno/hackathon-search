@@ -1,22 +1,30 @@
-import { Button, Divider, Stack, Typography } from "@mui/material"
-import { ReviewList } from "../Components/ReviewList"
-import { setRecipeReview } from "../localStorage"
+import { Button, Divider, Stack, Typography } from "@mui/material";
+import { ReviewList } from "../Components/ReviewList";
+import { addRecipeReview } from "../localStorage";
+import { Review } from "../types";
 
-const reviewWords = ["terrible", "bad", "good", "great", "perfect!"]
-const reviewers = ["Mathias", "Audun", "Mikael", "Einar", "Bob", "Alice"]
+const reviewWords = ["terrible", "bad", "good", "great", "perfect!"];
+export const Reviewers = [
+  "Mathias",
+  "Audun",
+  "Mikael",
+  "Einar",
+  "Bob",
+  "Alice",
+];
 
 export const Home = () => {
   const generateReview = () => {
-    const recipeId = Math.floor(Math.random() * 100)
-    const rating = Math.floor(Math.random() * 5 + 1)
-    setRecipeReview(recipeId, {
+    const recipeId = Math.floor(Math.random() * 100);
+    const rating = Math.floor(Math.random() * 5 + 1);
+    addRecipeReview(recipeId, {
       recipeId: recipeId,
       id: Math.floor(Math.random() * 100),
-      userName: reviewers[Math.floor(Math.random() * reviewers.length)],
+      userName: Reviewers[Math.floor(Math.random() * Reviewers.length)],
       rating: rating,
       comment: "This is a " + reviewWords[rating - 1] + " recipe",
-    })
-  }
+    } as Review);
+  };
   return (
     <Stack spacing={2}>
       <Typography variant="h2">Welcome to recipe search </Typography>
@@ -30,11 +38,9 @@ export const Home = () => {
         </Typography>
         <ReviewList />
       </Stack>
-      <Button
-        variant="contained"
-        onClick={() => generateReview()}>
+      <Button variant="contained" onClick={() => generateReview()}>
         Generate review
       </Button>
     </Stack>
-  )
-}
+  );
+};

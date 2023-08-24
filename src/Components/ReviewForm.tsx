@@ -1,22 +1,17 @@
-import { Button, Rating, Stack, TextField } from "@mui/material";
-import { useState, useEffect } from "react";
-import { getRecipeReview } from "../localStorage";
-import { Recipe } from "../helpers";
+import { IconButton, Rating, Stack, TextField } from "@mui/material";
+import AddCommentIcon from "@mui/icons-material/AddComment";
+import { useState } from "react";
+import { addRecipeReview } from "../localStorage";
+import { Review } from "../types";
+import { Reviewers } from "../Containers/Home";
 
-type ReviewFormProps = {
-  recipe: Recipe;
+type Props = {
+  recipeId: number;
 };
-export const ReviewForm = (props: ReviewFormProps) => {
+export const ReviewForm = (props: Props) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const recipe = props.recipe;
-  const review = getRecipeReview(recipe.id);
-
-  useEffect(() => {
-    if (review?.rating) setRating(review?.rating);
-    if (review?.comment) setComment(review?.comment);
-  }, [review, setRating, setComment]);
-
+  const recipeId = props.recipeId;
   const onChangeRating = (_: unknown, value: number | null) => {
     if (value) setRating(value);
   };
@@ -25,26 +20,33 @@ export const ReviewForm = (props: ReviewFormProps) => {
     if (event.target.value) setComment(event.target.value);
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(event);
+  const onSubmit = () => {
+    addRecipeReview(recipeId, {
+      recipeId: recipeId,
+      id: Math.floor(Math.random() * 100),
+      userName: Reviewers[Math.floor(Math.random() * Reviewers.length)],
+      rating: rating,
+      comment: comment,
+    } as Review);
   };
 
   return (
     <>
       <form onSubmit={onSubmit}>
         <Stack direction="row" spacing={2}>
-          <Rating
-            name="simple-controlled"
-            value={rating}
-            onChange={onChangeRating}
-          />
           <TextField
             helperText="Comment"
             value={comment}
             onChange={onChangeDescription}
           />
-          <Button type="submit">Add review</Button>
+          <Rating
+            name="simple-controlled"
+            value={rating}
+            onChange={onChangeRating}
+          />
+          <IconButton type="submit" aria-label="add review" color="primary">
+            <AddCommentIcon />
+          </IconButton>
         </Stack>
       </form>
     </>
