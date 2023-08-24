@@ -142,7 +142,7 @@ const recipeIndexRouter = new Route({
 class NotFoundError extends Error { }
 
 const RecipeComponent = () => {
-    const recipe = useLoader({ from: recipeRoute.id })
+    const { recipe } = useLoader({ from: recipeRoute.id })
     if (!recipe) {
         return null
     }
@@ -158,7 +158,13 @@ const recipeRoute = new Route({
     getParentRoute: () => recipesRoute,
     path: "$recipeId",
     key: false,
-    loader: async ({ params: { recipeId } }) => getRecipe(recipeId),
+    loader: async ({ params: { recipeId } }) => {
+        const res = getRecipe(recipeId)
+        if (res.status === "success") {
+            return { recipe: res.recipe }
+        }
+        throw new NotFoundError("Recipe not found")
+    },
     errorComponent: ({ error }) => {
         if (error instanceof NotFoundError) {
             return <div>{error.message}</div>
