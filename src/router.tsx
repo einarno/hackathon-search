@@ -23,6 +23,7 @@ const RootComponent = () => {
     const navigate = useNavigate()
     const keyDownHandler = (event: KeyboardEvent) => {
         if ((event.ctrlKey || event.metaKey) && (event.key === "K" || event.key === "k")) {
+            event.preventDefault()
             navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
         }
         if (event.key === "Escape") {
