@@ -7,7 +7,7 @@ import {
     Route,
     Router,
 } from "@tanstack/react-router"
-import { Container, Dialog, DialogContent, DialogTitle, Paper, Stack } from "@mui/material"
+import { Container, Dialog, DialogContent, Paper, Stack } from "@mui/material"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { Home } from "./Containers/Home"
 import { useEffect } from "react"
