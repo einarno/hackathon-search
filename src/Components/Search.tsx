@@ -47,7 +47,6 @@ export const Search = () => {
   const [selected, setSelected] = useState<number>(0);
   const navigate = useNavigate();
   function onKeyboardEvent(event: React.KeyboardEvent<HTMLDivElement>) {
-    console.log("handle keydown");
     if (event.key === "ArrowDown") {
       setSelected((prev) => prev + 1);
       const selectedElement = document.querySelector(`[data-selected="1"]`);
