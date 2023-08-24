@@ -16,6 +16,7 @@ import { Search } from "./Components/Search";
 import { z } from "zod";
 import { ViewRecipe } from "./Components/ViewRecipe";
 import { getRecipe } from "./helpers";
+import { RecipePage } from "./Containers/RecipePage"
 
 
 
@@ -116,7 +117,7 @@ const recipeIndexRouter = new Route({
     path: "/",
     component: () => (
         <Stack>
-            <Typography>Add list of recipes here</Typography>
+            <RecipePage />
         </Stack>
     ),
 })
