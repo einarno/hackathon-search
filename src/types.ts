@@ -8,6 +8,7 @@ export type Recipe = {
 }
 
 export type Review = {
+  id: number
   recipeId: number
   userName: string
   comment: string
