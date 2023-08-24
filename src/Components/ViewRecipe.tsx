@@ -64,7 +64,14 @@ const Steps = ({ steps, initiallyOpen, title, toggle, dense }: StepProps) => {
           disablePadding
         >
           {steps.map((step, i) => (
-            <ListItem key={i}>
+            <ListItem
+              key={i}
+              onClick={(e) => {
+                100;
+                const checkbox = e.currentTarget.querySelector("input");
+                checkbox?.click();
+              }}
+            >
               <Stack
                 direction="row"
                 alignItems="center"
@@ -74,11 +81,6 @@ const Steps = ({ steps, initiallyOpen, title, toggle, dense }: StepProps) => {
                 py={dense ? 0 : 1}
                 justifyContent="space-between"
                 sx={{ cursor: "pointer" }}
-                onClick={(e) => {
-                  100;
-                  const checkbox = e.currentTarget.querySelector("input");
-                  checkbox?.click();
-                }}
               >
                 <Checkbox />
                 <ListItemText primary={step} />
