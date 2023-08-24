@@ -30,7 +30,8 @@ const setup = async () => {
 
 	
 	// Adding documents
-	await client.index(INDEX_NAME).addDocuments(recipes)
+    const recipesWithId = recipes.map((recipe, index) => ({ ...recipe, id: index }))
+	await client.index(INDEX_NAME).addDocuments(recipesWithId)
 	
 }
 
