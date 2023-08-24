@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router"
 import { Stack, Typography } from "@mui/material"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
-import { getEmployee } from "./helpers"
+import { getRecipe } from "./helpers"
 import { Search } from "./Components/Search"
 
 
@@ -28,12 +28,12 @@ const rootRoute = new RootRoute({
                         Home
                     </Link>
                     <Link
-                        to={"/employees"}
+                        to={"/recipes"}
                         activeProps={{
                             className: "font-bold",
                         }}
                     >
-                        Employee Search
+                        recipe Search
                     </Link>
                 </Stack>
                 <hr />
@@ -51,15 +51,15 @@ const indexRoute = new Route({
     component: () => {
         return (
             <Stack>
-                <Typography>Welcome to employee search find your colleges</Typography>
+                <Typography>Welcome to recipe search </Typography>
             </Stack>
         )
     },
 })
 
-const employeesRoute = new Route({
+const recipesRoute = new Route({
     getParentRoute: () => rootRoute,
-    path: "employees",
+    path: "recipes",
     component: () => {
 
         return (
@@ -71,11 +71,11 @@ const employeesRoute = new Route({
 })
 
 
-const employeeIndexRouter = new Route({
-    getParentRoute: () => employeesRoute,
+const recipeIndexRouter = new Route({
+    getParentRoute: () => recipesRoute,
     path: "/",
     component: () => <Stack>
-        <Typography>Search for an employee</Typography>
+        <Typography>Search for an recipe</Typography>
         <Typography>The selected result will show up here</Typography>
     </Stack>
 })
@@ -83,24 +83,24 @@ const employeeIndexRouter = new Route({
 class NotFoundError extends Error { }
 
 
-const EmployeeComponent = () => {
-    const employee = useLoader({ from: employeeRoute.id })
-    if (!employee) {
+const RecipeComponent = () => {
+    const recipe = useLoader({ from: recipeRoute.id })
+    if (!recipe) {
         return null
     }
     return (
         <Stack>
-            <Typography>{employee.name}</Typography>
-            <Typography>{employee.role}</Typography>
-            <Typography>{employee.description}</Typography>
+            <Typography>{recipe.name}</Typography>
+            <Typography>{recipe.author}</Typography>
+            <Typography>{recipe.description}</Typography>
         </Stack>
     )
 }
-const employeeRoute = new Route({
-    getParentRoute: () => employeesRoute,
-    path: "$employeeId",
+const recipeRoute = new Route({
+    getParentRoute: () => recipesRoute,
+    path: "$recipeId",
     key: false,
-    loader: async ({ params: { employeeId } }) => getEmployee(employeeId),
+    loader: async ({ params: { recipeId } }) => getRecipe(recipeId),
     errorComponent: ({ error }) => {
         if (error instanceof NotFoundError) {
             return <div>{error.message}</div>
@@ -108,12 +108,12 @@ const employeeRoute = new Route({
 
         return <ErrorComponent error={error} />
     },
-    component: EmployeeComponent
+    component: RecipeComponent
 })
 
 
 const routeTree = rootRoute.addChildren([
-    employeesRoute.addChildren([employeeRoute, employeeIndexRouter]),
+    recipesRoute.addChildren([recipeRoute, recipeIndexRouter]),
     indexRoute,
 ])
 
