@@ -1,5 +1,6 @@
 import { z } from "zod"
 import recipesJSON from "../scripts/recipes.json" assert { type: "json" }
+const recipesJSONWithId = recipesJSON.map((recipe, id) => ({ ...recipe, id }))
 
 const recipesSchema = z.object({
     id: z.number(),
@@ -31,7 +32,7 @@ type ReturnRecipes = {
     recipes: Recipe[]
 } |
 {
-    staus: "error"
+    status: "error"
     errorCode: "not_found" | "invalid_request"
 }
 
@@ -40,16 +41,24 @@ type ReturnRecipe = {
     recipe: Recipe
 } |
 {
-    staus: "error"
-    errorCode: "not_found" | "invalid_request"
+    status: "error"
+    errorCode: "not_found" | "parse_error"
 }
 
-
-
-
-export const getRecipe = (id: string) => {
-    const recipes = recipesSchema.array().parse(recipesJSON)
-    return recipes.find(recipe => recipe.id === Number(id))
+export const getRecipe = (id: string): ReturnRecipe => {
+    const chosen = recipesJSONWithId.find(recipe => recipe.id === Number(id))
+    if (!chosen) {
+        return { status: "error", errorCode: "not_found", }
+    }
+    const res = recipesSchema.safeParse(chosen)
+    if (res.success === false) {
+        return { status: "error", errorCode: "parse_error" }
+    }
+    const parsed = res.data
+    return {
+        status: "success",
+        recipe: parsed,
+    }
 }
 
 export const getRecipes = (ids: string[]) => {
