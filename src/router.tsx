@@ -1,6 +1,5 @@
 import {
     Outlet,
-    Link,
     Route,
     ErrorComponent,
     Router,
@@ -8,7 +7,7 @@ import {
     useSearch,
     useNavigate,
 } from "@tanstack/react-router"
-import { Button, Dialog, DialogContent, DialogTitle, Grid, Stack, Typography } from "@mui/material"
+import { Container, Dialog, DialogContent, DialogTitle, Paper, Stack, Typography } from "@mui/material"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { getRecipe } from "./helpers"
 import { Search } from "./Components/Search"
@@ -16,58 +15,9 @@ import { z } from "zod"
 import { Home } from "./Containers/Home"
 import { ViewRecipe } from "./Components/ViewRecipe"
 import { useEffect } from "react"
+import { Navbar } from "./Components/Navbar"
 
 
-const Navbar = () => {
-  const navigate = useNavigate();
-  return (
-    <Stack
-      direction="row"
-      gap={1}
-      borderBottom="1px solid #eee"
-      p={1}
-      alignItems="center"
-      justifyContent="space-between"
-    >
-      <Stack>
-        <Typography noWrap>
-          <Link
-            to="/"
-            search={{ searchOpen: false }}
-            activeProps={{
-              className: "font-bold",
-            }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>
-        </Typography>
-      </Stack>
-      <Stack>
-        <Link
-          to={"/recipes"}
-          search={{ searchOpen: false }}
-          activeProps={{
-            className: "font-bold",
-          }}
-        >
-          <Typography noWrap>Recipe list</Typography>
-        </Link>
-      </Stack>
-      <Grid container justifyContent="flex-end">
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={() => {
-            navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
-          }}
-        >
-          Search
-        </Button>
-      </Grid>
-    </Stack>
-  );
-};
 
 const RootComponent = () => {
     const navigate = useNavigate()
@@ -85,13 +35,15 @@ const RootComponent = () => {
         window.addEventListener("keydown", keyDownHandler);
     });
     return (
-        <>
+        <Stack gap={1}>
             <Navbar />
-            <Outlet />
+            <Container maxWidth="md" component={Paper} elevation={2} >
+              <Outlet />
+            </Container>
 
             {/* Start rendering router matches */}
             <TanStackRouterDevtools position="bottom-right" />
-        </>
+        </Stack>
     )
 }
 
