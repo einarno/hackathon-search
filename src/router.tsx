@@ -7,7 +7,7 @@ import {
     Route,
     Router,
 } from "@tanstack/react-router"
-import { Container, Dialog, DialogContent, DialogTitle, Paper, Stack, Typography } from "@mui/material"
+import { Container, Dialog, DialogContent, DialogTitle, Paper, Stack } from "@mui/material"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { Home } from "./Containers/Home"
 import { useEffect } from "react"
@@ -38,7 +38,7 @@ const RootComponent = () => {
     return (
         <Stack gap={1}>
             <Navbar />
-            <Container maxWidth="md" component={Paper} elevation={2} >
+            <Container component={Paper} elevation={2} >
                 <Outlet />
             </Container>
 
@@ -114,9 +114,7 @@ const recipeIndexRouter = new Route({
     getParentRoute: () => selectedRecipeRoute,
     path: "/",
     component: () => (
-        <Stack>
-            <RecipePage />
-        </Stack>
+        <RecipePage />
     ),
 })
 
