@@ -26,6 +26,25 @@ export type Recipe = {
     method: string[]
 }
 
+type ReturnRecipes = {
+    status: "success"
+    recipes: Recipe[]
+} |
+{
+    staus: "error"
+    errorCode: "not_found" | "invalid_request"
+}
+
+type ReturnRecipe = {
+    status: "success"
+    recipe: Recipe
+} |
+{
+    staus: "error"
+    errorCode: "not_found" | "invalid_request"
+}
+
+
 
 
 export const getRecipe = (id: string) => {
@@ -42,3 +61,4 @@ export const getRecipes = (ids: string[]) => {
 
     return ids.map(id => recipeMap[id])
 }
+
