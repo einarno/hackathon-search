@@ -1,19 +1,32 @@
 import { useHits } from "react-instantsearch";
 import { recipesSchema } from "../helpers";
 import { Hit } from "./Hit";
-import { List } from "@mui/material";
+import { Stack } from "@mui/material";
+import { useState } from "react";
 
-export const Hits = () => {
+type Props = {
+  selected: number;
+  onSelected: (index: number) => void;
+};
+
+export const Hits = ({ selected, onSelected }: Props) => {
   const { hits } = useHits();
   return (
-    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+    <Stack gap={2} py={2}>
       {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        hits.map((hit) => {
+        hits.map((hit, index) => {
           const recipe = recipesSchema.parse(hit);
-          return <Hit key={recipe.id} recipe={recipe} />;
+          return (
+            <Hit
+              selected={index === selected}
+              onClick={onSelected}
+              key={recipe.id}
+              recipe={recipe}
+            />
+          );
         })
       }
-    </List>
+    </Stack>
   );
 };

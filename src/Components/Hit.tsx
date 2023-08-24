@@ -6,43 +6,47 @@ import { useNavigate } from "@tanstack/react-router";
 
 type HitProps = {
   recipe: Recipe;
+  selected?: boolean;
+  onClick: (id: number) => void;
 };
 
-const style = {
-  "border-radius": "5px",
-  marginTop: "10px",
-  padding: "10px",
-  "&:hover": {
-    cursor: "pointer",
-    "background-color": "red",
-  },
-};
-export function Hit(props: HitProps) {
+export function Hit({ recipe, selected }: HitProps) {
   const navigate = useNavigate();
-  const review = getRecipeReview(props.recipe.id);
-  const recipe = props.recipe;
+  const review = getRecipeReview(recipe.id);
   return (
-    <>
-      <div
-        onClick={() => navigate({ to: `/recipes/${recipe.id}` })}
-        className="search-item"
-        style={style}
-      >
-        <Stack direction="row" spacing={2}>
-          <Stack direction="column" spacing={2}>
-            <h3>{recipe.name}</h3>
-            <p>{recipe.description}</p>
-          </Stack>
-          <Stack
-            direction="row"
-            spacing={2}
-            style={{ colorScheme: "light", alignItems: "center" }}
-          >
-            <Rating name="read-only" value={review?.rating} readOnly />
-            {<CommentIcon />}
-          </Stack>
+    <Stack
+      onClick={() => navigate({ to: `/recipes/${recipe.id}` })}
+      className="search-item"
+      borderColor="red"
+      border={selected ? "1px solid #0072e5" : "1px solid #fff"}
+      p={1}
+      borderRadius="10px"
+      data-hit-id={recipe.id}
+      data-selected={selected ? "1" : "0"}
+      sx={{
+        transition: "0.1s ease-in-out",
+        "background-color": selected ? "#ebf5ff" : "#fff",
+      }}
+    >
+      <Stack direction="row" spacing={2}>
+        <Stack direction="column" spacing={2}>
+          <h3>{recipe.name}</h3>
+          <p>{recipe.description}</p>
         </Stack>
-      </div>
-    </>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={
+            {
+              // highlight if selected
+            }
+          }
+          style={{ colorScheme: "light", alignItems: "center" }}
+        >
+          <Rating name="read-only" value={review?.rating} readOnly />
+          {<CommentIcon />}
+        </Stack>
+      </Stack>
+    </Stack>
   );
 }

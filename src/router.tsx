@@ -65,7 +65,6 @@ const IndexComponent = () => {
             }
             }
         >
-            <DialogTitle>Search for recipes</DialogTitle>
             <DialogContent>
                 <Search />
             </DialogContent>
@@ -94,7 +93,6 @@ const RecipesComponent = () => {
             fullWidth={true}
             open={searchOpen}
         >
-            <DialogTitle>Search for recipes</DialogTitle>
             <DialogContent>
                 <Search />
             </DialogContent>
