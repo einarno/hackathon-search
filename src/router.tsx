@@ -8,7 +8,7 @@ import {
     useSearch,
     useNavigate,
 } from "@tanstack/react-router"
-import { Button, Dialog, Grid, Stack, Typography } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, Grid, Stack, Typography } from "@mui/material"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { getRecipe } from "./helpers"
 import { Search } from "./Components/Search"
@@ -97,7 +97,10 @@ const IndexComponent = () => {
             }
             }
         >
-            <Search />
+            <DialogTitle>Search for recipes</DialogTitle>
+            <DialogContent>
+                <Search />
+            </DialogContent>
         </Dialog>
     </>)
 }
