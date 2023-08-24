@@ -27,7 +27,7 @@ export const ReviewList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allReviews.slice(0, 10).map((r) => {
+          {allReviews.slice(0, 10).reverse().map((r) => {
             const res = getRecipe(String(r.recipeId));
             if (res.status === "error") {
               return null;

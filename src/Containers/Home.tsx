@@ -17,13 +17,15 @@ export const Home = () => {
   const generateReview = () => {
     const recipeId = Math.floor(Math.random() * 100);
     const rating = Math.floor(Math.random() * 5 + 1);
-    addRecipeReview(recipeId, {
-      recipeId: recipeId,
-      id: Math.floor(Math.random() * 100),
-      userName: Reviewers[Math.floor(Math.random() * Reviewers.length)],
-      rating: rating,
-      comment: "This is a " + reviewWords[rating - 1] + " recipe",
-    } as Review);
+        const foo = 123;
+        const r= {
+            id: foo,
+            userName: "Mathias",
+            added: new Date(Date.now()),
+            recipeId,
+            rating,
+        } as Review;
+    addRecipeReview(r);
   };
   return (
     <Stack p={2} gap={2} pb={8}>

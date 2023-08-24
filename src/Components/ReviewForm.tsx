@@ -21,7 +21,7 @@ export const ReviewForm = (props: Props) => {
   };
 
   const onSubmit = () => {
-    addRecipeReview(recipeId, {
+    addRecipeReview({
       recipeId: recipeId,
       id: Math.floor(Math.random() * 100),
       userName: Reviewers[Math.floor(Math.random() * Reviewers.length)],

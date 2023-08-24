@@ -1,29 +1,27 @@
 import { Review } from "./types";
 
-export const addRecipeReview = (recipeId: number, review: Review) => {
-  const existing = localStorage.getItem(recipeId.toString());
-
-  if (existing) {
-    const reviews = JSON.parse(existing);
-    reviews.push(review);
-    localStorage.setItem(recipeId.toString(), JSON.stringify(reviews));
+export const addRecipeReview = (review: Review) => {
+    console.log("will add", review)
+  const exists = !!localStorage.getItem("reviews");
+  if (!exists) {
+    localStorage.setItem("reviews", JSON.stringify([review]));
     return;
   }
-
-  localStorage.setItem(recipeId.toString(), JSON.stringify([review]));
+  const data = localStorage.getItem("reviews");
+  if (!data) {
+    return;
+  }
+  const existing = JSON.parse(data);
+  existing.push(review);
+  localStorage.setItem("reviews", JSON.stringify(existing));
 };
 
 export function getAllRecipeReviews(): Review[] {
-  const reviews: Review[] = [
-    {
-      id: 1,
-      recipeId: 1,
-      userName: "bob",
-      rating: 5,
-      comment: "This is a great recipe!",
-      added: new Date(),
-    },
-  ];
+  const raw = localStorage.getItem("reviews");
+  if (!raw) {
+    return [];
+  }
+  const reviews = JSON.parse(raw);
   return reviews;
 }
 
