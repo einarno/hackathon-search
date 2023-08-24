@@ -5,7 +5,6 @@ import {
     ErrorComponent,
     Router,
     RootRoute,
-    useLoader,
     useSearch,
     useNavigate,
 } from "@tanstack/react-router"
@@ -16,12 +15,24 @@ import { Search } from "./Components/Search"
 import { z } from "zod"
 import { Home } from "./Containers/Home"
 import { ViewRecipe } from "./Components/ViewRecipe"
-
+import { useEffect } from "react"
 
 
 
 const RootComponent = () => {
     const navigate = useNavigate()
+    const keyDownHandler = (event: KeyboardEvent) => {
+        if ((event.ctrlKey || event.metaKey) && (event.key === "K" || event.key === "k")) {
+            navigate({ search: (prev) => ({ ...prev, searchOpen: true }) });
+        }
+        if (event.key === "Escape") {
+            navigate({ search: (prev) => ({ ...prev, searchOpen: false }) });
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("keydown", keyDownHandler);
+    });
     return (
         <>
             <Stack direction="row" gap={1}>
@@ -139,19 +150,6 @@ const recipeIndexRouter = new Route({
 
 class NotFoundError extends Error { }
 
-const RecipeComponent = () => {
-    const { recipe } = useLoader({ from: recipeRoute.id })
-    if (!recipe) {
-        return null
-    }
-    return (
-        <Stack>
-            <Typography>{recipe.name}</Typography>
-            <Typography>{recipe.author}</Typography>
-            <Typography>{recipe.description}</Typography>
-        </Stack>
-    )
-}
 export const recipeRoute = new Route({
     getParentRoute: () => selectedRecipeRoute,
     path: "$recipeId",
