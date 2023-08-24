@@ -9,6 +9,7 @@ export const recipesSchema = z.object({
     Author: z.string(),
     Ingredients: z.string().array(),
     Method: z.string().array(),
+    url: z.string(),
 }).transform(data => ({
     id: data.id,
     name: data.Name,
@@ -16,11 +17,13 @@ export const recipesSchema = z.object({
     author: data.Author,
     ingredients: data.Ingredients,
     method: data.Method,
+    url: data.url,
 }
 ))
 export type Recipe = {
     id: number
     name: string
+    url: string
     description: string
     author: string
     ingredients: string[]
