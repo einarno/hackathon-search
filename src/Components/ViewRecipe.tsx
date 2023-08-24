@@ -109,14 +109,7 @@ export const ViewRecipe = () => {
 
   const { recipe } = useLoader({ from: recipeRoute.id });
   return (
-    <Stack
-      maxWidth="md"
-      component={Paper}
-      gap={4}
-      elevation={1}
-      p={2}
-      minHeight="calc(100vh - 200px)"
-    >
+    <Stack maxWidth="md" gap={4} p={2} minHeight="calc(100vh - 200px)">
       <Stack gap={0}>
         <Typography color="orangered" variant="h4">
           {recipe.name}
