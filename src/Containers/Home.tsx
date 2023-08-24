@@ -2,32 +2,18 @@ import { Button, Divider, Stack, Typography } from "@mui/material"
 import { ReviewList } from "../Components/ReviewList"
 import { setRecipeReview } from "../localStorage"
 
-const reviewWords = [
-  "great",
-  "good",
-  "bad",
-  "terrible",
-  "amazing",
-  "fantastic",
-  "horrible",
-  "wonderful",
-  "awful",
-  "mediocre",
-  "average",
-]
+const reviewWords = ["terrible", "bad", "good", "great", "perfect!"]
 
 export const Home = () => {
   const generateReview = () => {
     const recipeId = Math.floor(Math.random() * 100)
+    const rating = Math.floor(Math.random() * 5 + 1)
     setRecipeReview(recipeId, {
       recipeId: recipeId,
       id: Math.floor(Math.random() * 100),
       userName: "Mathias",
-      rating: Math.floor(Math.random() * 5 + 1),
-      comment:
-        "This is a " +
-        reviewWords[Math.floor(Math.random() * reviewWords.length + 1)] +
-        " recipe",
+      rating: rating,
+      comment: "This is a " + reviewWords[rating - 1] + " recipe",
     })
   }
   return (
