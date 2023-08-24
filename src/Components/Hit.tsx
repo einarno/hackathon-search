@@ -9,8 +9,8 @@ type HitProps = {
 };
 
 const style = {
-  border: "1px solid grey ",
   "border-radius": "5px",
+  marginTop: "10px",
   padding: "10px",
   "&:hover": {
     cursor: "pointer",
